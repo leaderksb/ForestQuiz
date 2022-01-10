@@ -1,0 +1,75 @@
+-- 현재 사용가능한 데이터베이스 확인
+show databases;
+
+-- 경고문 발생시 경고내용 보기
+show warnings\g
+
+-- 데이터베이스 생성
+create database 이름;
+create database tcpip;
+
+-- 데이터베이스 삭제
+drop database 이름;
+
+-- 데이터베이스 접속
+use tcpip;
+
+-- information 테이블 생성
+-- id를 기본키로 중복 비허용
+create table information(
+	id varchar(50),
+	pw varchar(50) not null,
+	nickname varchar(50) not null,
+	signupdate date,
+	level int,
+	exp int,
+	primary key (id) );
+
+-- 회원정보 삽입
+insert into information values ('kimsubin', 'kimsubin', 'tokki', curdate(), 1, 98);
+
+-- 회원정보 수정
+
+-- 회원정보 삭제
+
+-- question 테이블 생성
+create table question(
+	qno int,
+	quiz varchar(100),
+	answer varchar(100),
+	primary key (qno) );
+
+-- 문제와 답 삽입
+insert into question values (0, '한입 크기로 만든 중국의 만두로 3천년 전부터 만들어 먹기 시작한 이것은 무엇일까요?', '딤섬');
+insert into question values (1, '물고기 중에 가장 학벌이 좋은 물고기는 무엇일까요?', '고등어');
+insert into question values (2, '정육면체의 주사위를 굴려서 나온 숫자 2의 뒷면에 나올 숫자는 무엇일까요?', '5');
+insert into question values (3, '지하철에서 한 좌석 열(길게 뻗은 의자)에서 앉을 수 있는 최대 정원은 몇명일까요?', '7');
+insert into question values (4, '도시와 자연환경 속에 존재하는 다양한 장애물들을 활용하여 이동하는 개인훈련인 이것은 무엇일까요?', '파쿠르');
+insert into question values (5, '거래 단계별로 재화나 용역에 새로 부가되는 가치에 부과되는 조세인 이것은 무엇일까요?', '부가가치세');
+insert into question values (6, '세상에서 가장 잘 깨지는 창문의 이름은 무엇일까요?', '와장창');
+insert into question values (7, '뽑으면 우는 식물은 무엇일까요?', '우엉');
+
+-- 랜덤으로 문제 하나 가져오기
+select quiz from question order by rand() limit 1;
+
+-- score 테이블 생성
+create table score(
+	nickname varchar(50),
+	score varchar(50) );
+
+-- score 상위 데이터 5개 검색
+select * from score order by score * 1 desc limit 3;
+
+-- connect 테이블 생성
+create table connect(
+	ip varchar(100),
+	primary key (ip) );
+
+-- 접속한 아이피 주소 삽입
+insert into connect values ('');
+
+-- 테이블 검색
+select * from question;
+select * from connect;
+select * from information;
+select * from score;
